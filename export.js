@@ -11,14 +11,12 @@ tableSvc.queryEntities(TABLE,query,null,function(err,result,response){
         console.log(`-- EXPORTING FROM TABLE ${TABLE} --`);
         var headers = Object.keys(result.entries[0]).filter(key => key != '.metadata');
         var csv = [];
-        console.log(headers);
         csv.push(headers.join(','));
         result.entries.forEach(item => {
             var values = [];
             headers.forEach(header => {
                 values.push(`${item[header]._}`);
             });
-            console.log(values);
             csv.push(values.join(','));
         });
         console.log(`-- EXPORT COMPLETE --`);
